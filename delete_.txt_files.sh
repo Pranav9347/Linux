@@ -5,17 +5,22 @@
 
 #Deleting .txt files in the parent directory:
 for filename in `ls *.txt` #get the list of .txt files
-  do
-        rm $filename
-  done
-
-#Deleting .txt files in the 1st level sub-directories
-for folder in `ls -d */`
 do
-   cd $folder
-  for filename in `ls *.txt`
-  do
+if [ -z "$filename" ]
+then
+      break;
+else
         rm $filename
-  done
-cd ..
+fi  
 done
+#Deleting .txt files in sub-directories
+  for folder in `ls -d */`
+do
+if [ -z "folder" ]
+then
+      break;
+else
+     rm -rf $folder
+fi
+done
+
